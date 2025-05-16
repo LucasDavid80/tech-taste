@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techtaste/data/restaurant_data.dart';
 import 'package:techtaste/ui/_core/app_theme.dart';
-import 'package:techtaste/ui/_core/bag_provider.dart';
+import 'package:techtaste/ui/_core/providers/address_provider.dart';
+import 'package:techtaste/ui/_core/providers/bag_provider.dart';
+import 'package:techtaste/ui/_core/providers/payment_provider.dart';
+import 'package:techtaste/ui/_core/providers/quantity_provider.dart';
 import 'package:techtaste/ui/splash/splash_screen.dart';
 
 void main() async {
@@ -19,6 +22,12 @@ void main() async {
           },
         ),
         ChangeNotifierProvider(create: (context) => BagProvider()),
+        ChangeNotifierProvider(
+          create:
+              (context) => QuantityProvider(), // Adiciona o QuantityProvider
+        ),
+        ChangeNotifierProvider(create: (context) => PaymentProvider()),
+        ChangeNotifierProvider(create: (context) => AddressProvider()),
       ],
       child: const MyApp(),
     ),
