@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:techtaste/ui/_core/bag_provider.dart';
+import 'package:techtaste/ui/_core/providers/bag_provider.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:techtaste/ui/checkout/checkout_screen.dart';
 
