@@ -11,7 +11,7 @@ class QuantityProvider extends ChangeNotifier {
   }
 
   void decrement() {
-    if (_quantity > 0) {
+    if (_quantity > 1) {
       _quantity--;
       notifyListeners(); // Notifica os widgets que dependem deste estado
     }
