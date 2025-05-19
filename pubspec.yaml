@@ -31,5 +31,10 @@ flutter:
     - assets/banners/
     - assets/categories/
     - assets/dishes/
+    - assets/dishes/monstro-burguer/
+    - assets/dishes/cabron-mexicano/
+    - assets/dishes/foodcourt-natural/
+    - assets/dishes/donutz/
+    - assets/dishes/panda-sushi/
     - assets/others/
     - assets/restaurants/
