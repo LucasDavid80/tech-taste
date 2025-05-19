@@ -17,6 +17,11 @@ class CheckoutScreen extends StatelessWidget {
     AddressProvider addressProvider = Provider.of<AddressProvider>(context);
     PaymentProvider paymentProvider = Provider.of<PaymentProvider>(context);
     if (bagProvider.dishesOnBag.isEmpty) {
+      // Limpa endereço e pagamento após o build
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        addressProvider.clearSelectedAddress();
+        paymentProvider.clearSelectedPayment();
+      });
       return Scaffold(
         appBar: AppBar(title: const Text('Sacola'), centerTitle: true),
         body: Center(child: Text('Nenhum pedido na sacola.')),
