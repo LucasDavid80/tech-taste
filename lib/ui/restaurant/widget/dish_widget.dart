@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:techtaste/model/dish.dart';
+import 'package:techtaste/model/restaurant.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
 import 'package:techtaste/ui/dish/dish_screen.dart';
 
 class DishWidget extends StatelessWidget {
   final Dish dish;
-  const DishWidget({super.key, required this.dish});
+  final Restaurant restaurant;
+  const DishWidget({super.key, required this.dish, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,10 @@ class DishWidget extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DishScreen(dish: dish)),
+          MaterialPageRoute(
+            builder:
+                (context) => DishScreen(dish: dish, restaurant: restaurant),
+          ),
         );
       },
       child: Card(
@@ -29,7 +34,7 @@ class DishWidget extends StatelessWidget {
           spacing: 16.0,
           children: [
             Image.asset(
-              'assets/dishes/default.png',
+              'assets/${dish.imagePath}',
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover, // Ajusta a imagem ao espaço disponível
             ),
