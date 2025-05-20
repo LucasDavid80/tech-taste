@@ -19,14 +19,12 @@ Drawer getDrawer(BuildContext context) {
         // ),
         ListTile(
           selectedColor: Color(0xFFFFA559),
-          // leading: Icon(Icons.menu),
           title: Text('Menu'),
           onTap: () {
             Navigator.pop(context);
           },
         ),
         ListTile(
-          // leading: Icon(Icons.shopping_basket),
           title: Text('Sacola'),
           onTap: () {
             Navigator.push(
@@ -40,7 +38,12 @@ Drawer getDrawer(BuildContext context) {
           },
         ),
         ListTile(
-          // leading: Icon(Icons.person),
+          title: Text('Cupons'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
           title: Text('Minha Conta'),
           onTap: () {
             Navigator.pop(context);
