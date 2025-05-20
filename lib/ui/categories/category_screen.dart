@@ -12,6 +12,15 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RestaurantData restaurantData = Provider.of<RestaurantData>(context);
+    List<Restaurant> restaurantLista = [];
+    for (var element in restaurantData.listRestaurants) {
+      for (var category in element.categories) {
+        if (category == this.category) {
+          restaurantLista.add(element);
+        }
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: getAppBar(context: context, title: category),
@@ -25,11 +34,18 @@ class CategoryScreen extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 16.0,
-              children: List.generate(restaurantData.listRestaurants.length, (
-                index,
-              ) {
-                Restaurant restaurant = restaurantData.listRestaurants[index];
-                return RestaurantWidget(restaurant: restaurant);
+              children: List.generate(restaurantLista.length, (index) {
+                Restaurant restaurant = restaurantLista[index];
+                for (var category in restaurant.categories) {
+                  if (category == this.category) {
+                    return RestaurantWidget(restaurant: restaurant);
+                  }
+                }
+
+                // if (restaurant.categories[0] != category) {
+                return const SizedBox(height: 0);
+                // }
+                // return RestaurantWidget(restaurant: restaurant);
               }),
             ),
           ],
