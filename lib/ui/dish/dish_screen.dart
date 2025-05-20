@@ -72,7 +72,19 @@ class DishScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          quantityProvider.decrement(); // Diminui a quantidade
+                          if (quantityProvider.quantity <= 1) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Quantidade mínima é 1',
+                                  style: TextStyle(fontSize: 20.0),
+                                ),
+                              ),
+                            );
+                          } else {
+                            quantityProvider
+                                .decrement(); // Diminui a quantidade
+                          }
                         },
                       ),
                       Text(
@@ -101,7 +113,7 @@ class DishScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: () {
                       // Lógica para adicionar o prato ao carrinho
