@@ -46,23 +46,25 @@ flowchart TD
 
 ### Exemplos de Telas
 
-**Splash Screen**
-<img src="assets/screenshots/splash-screen.png" width="350" alt="Splash Screen"/>
+<div align="center">
+  <h2>Splash Screen</h2>
+  <img src="assets/screenshots/splash-screen.png" width="350" alt="Splash Screen"/>
 
-**Tela Principal**
-<img src="assets/screenshots/home-screen.png" width="350" alt="Tela Principal"/>
+  <h2>Tela Principal</h2>
+  <img src="assets/screenshots/home-screen.png" width="350" alt="Tela Principal"/>
 
-**Tela de Restaurante**
-<img src="assets/screenshots/restaurant-screen.png" width="350" alt="Tela de Restaurante"/>
+  <h2>Tela de Restaurante</h2>
+  <img src="assets/screenshots/restaurant-screen.png" width="350" alt="Tela de Restaurante"/>
 
-**Tela de Prato**
-<img src="assets/screenshots/dish-screen.png" width="350" alt="Tela de Prato"/>
+  <h2>Tela de Prato</h2>
+  <img src="assets/screenshots/dish-screen.png" width="350" alt="Tela de Prato"/>
 
-**Tela de Checkout**
-<img src="assets/screenshots/checkout-screen.png" width="350" alt="Tela de Checkout"/>
+  <h2>Tela de Checkout</h2>
+  <img src="assets/screenshots/checkout-screen.png" width="350" alt="Tela de Checkout"/>
 
-**Confirmação de Pedido**
-<img src="assets/screenshots/order-confirmation.png" width="350" alt="Confirmação de Pedido"/>
+  <h2>Confirmação de Pedido</h2>
+  <img src="assets/screenshots/order-confirmation.png" width="350" alt="Confirmação de Pedido"/>
+</div>
 
 ## Contribuição
 
