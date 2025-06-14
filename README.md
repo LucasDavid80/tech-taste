@@ -37,6 +37,7 @@ Aplicativo Flutter para explorar restaurantes, pratos e categorias gastronômica
 flowchart TD
     Splash[Splash Screen] --> Home[Tela Principal]
     Home --> Categoria[Filtrar por Categoria]
+    Categoria --> Restaurante[Tela de Restaurante]
     Home --> Restaurante[Tela de Restaurante]
     Restaurante --> Prato[Tela de Prato]
     Prato --> Carrinho[Adicionar ao Carrinho]
