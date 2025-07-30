@@ -67,6 +67,16 @@ flowchart TD
   <img src="assets/screenshots/order-confirmation.png" width="350" alt="Confirmação de Pedido"/>
 </div>
 
+## Tecnologias Utilizadas
+
+- Flutter
+- Dart
+- Provider (para gerenciamento de estado)
+- Mermaid.js (para diagrama de fluxo no README
+- Widgets reutilizáveis
+- Gerenciamento de temas com app_theme.dart
+- Organização modular com lib/ui, model, data
+
 ## Contribuição
 
 Contribuições são bem-vindas! Abra uma issue ou envie um pull request.
