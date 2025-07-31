@@ -24,31 +24,29 @@ class CategoryScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: getAppBar(context: context, title: category),
-        body: Column(
-          spacing: 16.0,
-          children: [
-            Text(
-              'Principais restaurantes em $category',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 16.0,
-              children: List.generate(restaurantLista.length, (index) {
-                Restaurant restaurant = restaurantLista[index];
-                for (var category in restaurant.categories) {
-                  if (category == this.category) {
-                    return RestaurantWidget(restaurant: restaurant);
+        body: SingleChildScrollView(
+          child: Column(
+            spacing: 16.0,
+            children: [
+              Text(
+                'Principais restaurantes em $category',
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 16.0,
+                children: List.generate(restaurantLista.length, (index) {
+                  Restaurant restaurant = restaurantLista[index];
+                  for (var category in restaurant.categories) {
+                    if (category == this.category) {
+                      return RestaurantWidget(restaurant: restaurant);
+                    }
                   }
-                }
-
-                // if (restaurant.categories[0] != category) {
-                return const SizedBox(height: 0);
-                // }
-                // return RestaurantWidget(restaurant: restaurant);
-              }),
-            ),
-          ],
+                  return const SizedBox(height: 0);
+                }),
+              ),
+            ],
+          ),
         ),
       ),
     );
