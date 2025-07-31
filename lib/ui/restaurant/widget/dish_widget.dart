@@ -16,7 +16,7 @@ class DishWidget extends StatelessWidget {
     String description =
         indicePontoFinal > 0
             ? dish.description.substring(0, indicePontoFinal)
-            : dish.description; // se não tiver ponto, mostra tudo
+            : dish.description; // se não tiver ponto final, mostra tudo
 
     return InkWell(
       onTap: () {
