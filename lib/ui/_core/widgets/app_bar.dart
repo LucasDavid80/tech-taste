@@ -18,6 +18,8 @@ AppBar getAppBar({required BuildContext context, String? title}) {
           style: TextStyle(fontSize: 10.0),
         ),
         child: IconButton(
+          key: Key('btnCarrinho'),
+          tooltip: 'Carrinho',
           onPressed: () {
             Navigator.push(
               context,
