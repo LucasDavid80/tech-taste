@@ -37,6 +37,7 @@ Aplicativo Flutter para explorar restaurantes, pratos e categorias gastronômica
 flowchart TD
     Splash[Splash Screen] --> Home[Tela Principal]
     Home --> Categoria[Filtrar por Categoria]
+    Categoria --> Restaurante[Tela de Restaurante]
     Home --> Restaurante[Tela de Restaurante]
     Restaurante --> Prato[Tela de Prato]
     Prato --> Carrinho[Adicionar ao Carrinho]
@@ -65,6 +66,16 @@ flowchart TD
   <h2>Confirmação de Pedido</h2>
   <img src="assets/screenshots/order-confirmation.png" width="350" alt="Confirmação de Pedido"/>
 </div>
+
+## Tecnologias Utilizadas
+
+- Flutter
+- Dart
+- Provider (para gerenciamento de estado)
+- Mermaid.js (para diagrama de fluxo no README
+- Widgets reutilizáveis
+- Gerenciamento de temas com app_theme.dart
+- Organização modular com lib/ui, model, data
 
 ## Contribuição
 
