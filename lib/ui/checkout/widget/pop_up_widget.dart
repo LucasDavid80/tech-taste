@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
 import 'package:techtaste/ui/_core/providers/address_provider.dart';
-import 'package:techtaste/ui/checkout/widget/card_widget.dart';
+import 'package:techtaste/ui/checkout/cards/card_widget.dart';
 import 'package:techtaste/ui/_core/providers/payment_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +23,8 @@ double showPopUpWidget({
                   ? buildPaymentOptions(context)
                   : title == 'Endereço de Entrega'
                   ? buildAddressOptions(context)
+                  : title == 'Cupom'
+                  ? buildCupomOptions(context)
                   : [Text('Nenhum Endereço ou Pagamento disponível')],
         ),
       );
@@ -35,6 +37,7 @@ double showPopUpWidget({
 List<Widget> buildPaymentOptions(BuildContext context) {
   return [
     getCardWidget(
+      'Credito',
       'Cartão de Crédito',
       '**** **** **** 1234',
       'assets/others/visa.png',
@@ -48,6 +51,7 @@ List<Widget> buildPaymentOptions(BuildContext context) {
       },
     ),
     getCardWidget(
+      'Debito',
       'Cartão de Débito',
       '**** **** **** 5678',
       'assets/others/visa.png',
@@ -76,6 +80,7 @@ List<Widget> buildAddressOptions(BuildContext context) {
             borderRadius: BorderRadius.circular(1200.0),
           ),
           child: IconButton(
+            key: Key('btnCasa'),
             onPressed: () {
               Provider.of<AddressProvider>(
                 context,
@@ -101,12 +106,81 @@ List<Widget> buildAddressOptions(BuildContext context) {
             borderRadius: BorderRadius.circular(1200.0),
           ),
           child: IconButton(
+            key: Key('btnTrabalho'),
             onPressed: () {
               Provider.of<AddressProvider>(
                 context,
                 listen: false,
               ).selectAddressDelivery('Trabalho', 'Avenida Central, 456');
               entrega = 5;
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
+          ),
+        ),
+      ),
+    ),
+  ];
+}
+
+List<Widget> buildCupomOptions(BuildContext context) {
+  return [
+    Card(
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16.0),
+        title: Text('Cupom de 10%'),
+        subtitle: Text('Código: CUPOM10'),
+        leading: Icon(Icons.local_offer),
+        trailing: Container(
+          decoration: BoxDecoration(
+            color: AppColors.buttonColor,
+            borderRadius: BorderRadius.circular(1200.0),
+          ),
+          child: IconButton(
+            onPressed: () {
+              // Implementar a lógica para aplicar o cupom
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
+          ),
+        ),
+      ),
+    ),
+    Card(
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16.0),
+        title: Text('Cupom de 20%'),
+        subtitle: Text('Código: CUPOM20'),
+        leading: Icon(Icons.local_offer),
+        trailing: Container(
+          decoration: BoxDecoration(
+            color: AppColors.buttonColor,
+            borderRadius: BorderRadius.circular(1200.0),
+          ),
+          child: IconButton(
+            onPressed: () {
+              // Implementar a lógica para aplicar o cupom
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
+          ),
+        ),
+      ),
+    ),
+    Card(
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16.0),
+        title: Text('Cupom de 15%'),
+        subtitle: Text('Código: CUPOM15'),
+        leading: Icon(Icons.local_offer),
+        trailing: Container(
+          decoration: BoxDecoration(
+            color: AppColors.buttonColor,
+            borderRadius: BorderRadius.circular(1200.0),
+          ),
+          child: IconButton(
+            onPressed: () {
+              // Implementar a lógica para aplicar o cupom
               Navigator.of(context).pop();
             },
             icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
