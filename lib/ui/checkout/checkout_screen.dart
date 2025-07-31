@@ -4,8 +4,9 @@ import 'package:techtaste/model/dish.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
 import 'package:techtaste/ui/_core/providers/address_provider.dart';
 import 'package:techtaste/ui/_core/providers/bag_provider.dart';
-import 'package:techtaste/ui/checkout/widget/card_widget.dart';
-import 'package:techtaste/ui/checkout/widget/pop_up_widget.dart';
+import 'package:techtaste/ui/checkout/cards/address_card_widget.dart';
+import 'package:techtaste/ui/checkout/widget/order_confirm_dialog.dart';
+import 'package:techtaste/ui/checkout/cards/payment_card_widget.dart';
 import 'package:techtaste/ui/_core/providers/payment_provider.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -31,81 +32,11 @@ class CheckoutScreen extends StatelessWidget {
     double total = bagProvider.totalPrice() + enderecoEntrega;
 
     //Função para retornar um card modular
-    Widget buildCard(String title, String subtitle, bool isPaymentCard) {
+    Widget buildCard(bool isPaymentCard) {
       if (isPaymentCard) {
-        return Consumer<PaymentProvider>(
-          builder: (context, paymentProvider, child) {
-            if (paymentProvider.selectedPaymentMethod == null) {
-              return Card(
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(16.0),
-                  title: Text('Selecione uma forma de pagamento'),
-                  trailing: Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.buttonColor,
-                      borderRadius: BorderRadius.circular(1200.0),
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        showPopUpWidget(context: context, title: 'Pagamento');
-                      },
-                      icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return getCardWidget(
-                paymentProvider.selectedPaymentMethod ?? title,
-                paymentProvider.selectedPaymentDetails ?? subtitle,
-                'assets/others/visa.png',
-                () {
-                  showPopUpWidget(context: context, title: 'Pagamento');
-                },
-              );
-            }
-          },
-        );
+        return paymentCard();
       } else {
-        return Consumer<AddressProvider>(
-          builder: (context, paymentProvider, child) {
-            if (paymentProvider.selectedAddressDelivery == null) {
-              return Card(
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(16.0),
-                  title: Text('Selecione uma forma de pagamento'),
-                  trailing: Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.buttonColor,
-                      borderRadius: BorderRadius.circular(1200.0),
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        showPopUpWidget(
-                          context: context,
-                          title: 'Endereço de Entrega',
-                        );
-                      },
-                      icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return getCardWidget(
-                paymentProvider.selectedAddressDelivery ?? title,
-                paymentProvider.selectedAddressDetails ?? subtitle,
-                '',
-                () {
-                  enderecoEntrega = showPopUpWidget(
-                    context: context,
-                    title: 'Endereço de Entrega',
-                  );
-                },
-              );
-            }
-          },
-        );
+        return addressCard(enderecoEntrega);
       }
     }
 
@@ -118,7 +49,6 @@ class CheckoutScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 bagProvider.clearBag();
-                // Navigator.pop(context);
               },
               child: Text('Limpar'),
             ),
@@ -148,7 +78,7 @@ class CheckoutScreen extends StatelessWidget {
                       return ListTile(
                         onTap: () {},
                         leading: Image.asset(
-                          'assets/dishes/default.png',
+                          'assets/${dish.imagePath}',
                           width: 48,
                         ),
                         title: Text(dish.name),
@@ -204,11 +134,7 @@ class CheckoutScreen extends StatelessWidget {
                     color: AppColors.textHighlightColor,
                   ),
                 ),
-                buildCard(
-                  '',
-                  '',
-                  true,
-                ), // Card de pagamento, favor não apagar :)
+                buildCard(true), // Card de pagamento, favor não apagar :)
                 Text(
                   'Entregar no endereço',
                   textAlign: TextAlign.start,
@@ -218,11 +144,7 @@ class CheckoutScreen extends StatelessWidget {
                     color: AppColors.textHighlightColor,
                   ),
                 ),
-                buildCard(
-                  '',
-                  '',
-                  false,
-                ), // Card de endereço, favor não apagar :)
+                buildCard(false), // Card de endereço, favor não apagar :)
                 Text(
                   'Confirmar',
                   textAlign: TextAlign.start,
@@ -282,108 +204,14 @@ class CheckoutScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
+                          key: Key('ConfirmarPedido'),
                           onPressed: () {
-                            showDialog(
+                            showOrderConfirmDialog(
                               context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  title: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.check_circle,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(width: 8),
-                                      Text(
-                                        'Pedido Confirmado',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  content: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(height: 10),
-                                      Text(
-                                        'Seu pedido foi confirmado com sucesso!',
-                                        style: TextStyle(fontSize: 16),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      SizedBox(height: 16),
-                                      Text(
-                                        'Total: R\$ ${total.toStringAsFixed(2)}',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.green[700],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  actionsAlignment: MainAxisAlignment.center,
-                                  actions: [
-                                    TextButton(
-                                      onPressed:
-                                          () => {Navigator.of(context).pop()},
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.white,
-                                        backgroundColor: Colors.red,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            8,
-                                          ),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 16,
-                                          vertical: 8,
-                                        ),
-                                        child: Text('CANCELAR'),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed:
-                                          () => {
-                                            bagProvider.clearBag(),
-                                            addressProvider
-                                                .clearSelectedAddress(),
-                                            paymentProvider
-                                                .clearSelectedPayment(),
-
-                                            Navigator.of(context).pop(),
-                                          },
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.white,
-                                        backgroundColor: Colors.green,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            8,
-                                          ),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 16,
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          'OK',
-                                          style: TextStyle(
-                                            color: AppColors.backgroundColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
+                              total: total,
+                              bagProvider: bagProvider,
+                              addressProvider: addressProvider,
+                              paymentProvider: paymentProvider,
                             );
                           },
                           style: ElevatedButton.styleFrom(
