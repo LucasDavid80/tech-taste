@@ -31,16 +31,20 @@ class CategoryWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 8.0,
           children: [
-            Image.asset(
-              'assets/categories/${category.toLowerCase()}.png',
-              height: 48,
+            Expanded(
+              child: Image.asset(
+                'assets/categories/${category.toLowerCase()}.png',
+                height: 48,
+              ),
             ),
-            Text(
-              category,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
+            Expanded(
+              child: Text(
+                category,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
