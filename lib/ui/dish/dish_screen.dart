@@ -115,6 +115,7 @@ class DishScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
+                    key: Key('btnAdicionar'),
                     onPressed: () {
                       // Lógica para adicionar o prato ao carrinho
 
@@ -123,18 +124,22 @@ class DishScreen extends StatelessWidget {
                         listen: false,
                       ).setRestaurantDistance(restaurant.distance);
 
-                      Provider.of<BagProvider>(
+                      bool added = Provider.of<BagProvider>(
                         context,
                         listen: false,
-                      ).addAllDishes(
-                        List.generate(
-                          Provider.of<QuantityProvider>(
-                            context,
-                            listen: false,
-                          ).quantity,
-                          (index) => dish,
-                        ),
-                      );
+                      ).tryAddDish(dish, restaurant.name);
+
+                      if (!added) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Você só pode adicionar pratos de um único restaurante por vez.',
+                              style: TextStyle(fontSize: 20.0),
+                            ),
+                          ),
+                        );
+                        return;
+                      }
 
                       Provider.of<QuantityProvider>(
                         context,
