@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
 
 Card getCardWidget(
+  String chave,
   String title,
-  String? subtitle,
+  String subtitle,
   String? imagePath,
   Function()? onTap,
 ) {
@@ -11,7 +12,7 @@ Card getCardWidget(
     child: ListTile(
       contentPadding: const EdgeInsets.all(16.0),
       title: Text(title),
-      subtitle: Text(subtitle!),
+      subtitle: Text(subtitle),
       leading:
           (imagePath! != '')
               ? Image.asset(imagePath, width: 48)
@@ -22,6 +23,7 @@ Card getCardWidget(
           borderRadius: BorderRadius.circular(1200.0),
         ),
         child: IconButton(
+          key: Key(chave),
           onPressed: () {
             onTap?.call();
           },
