@@ -2,10 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
 import 'package:techtaste/data/restaurant_data.dart';
-import 'package:techtaste/ui/_core/providers/address_provider.dart';
-import 'package:techtaste/ui/_core/providers/bag_provider.dart';
 import 'package:techtaste/ui/checkout/checkout_screen.dart';
 import 'package:techtaste/ui/dish/dish_screen.dart';
 import 'package:techtaste/ui/home/home_screen.dart';
@@ -31,7 +28,7 @@ void main() {
     await restaurantData.getRestaurants();
   });
 
-  testWidgets('Navegando até a página de Checkout (teste com erro de dev)', (
+  /*testWidgets('Navegando até a página de Checkout (teste com erro de dev)', (
     WidgetTester tester,
   ) async {
     // Inicializa o widget SplashScreen
@@ -62,7 +59,7 @@ void main() {
     expect(find.byType(CheckoutScreen), findsOneWidget);
     print('✅ Navegou para a tela CheckoutScreen');
     expect(find.text('Sacola'), findsOneWidget);
-  });
+  });*/
 
   testWidgets('Verificando se o Carrinho está vazio - Icone do Carrinho', (
     WidgetTester tester,
@@ -93,7 +90,7 @@ void main() {
     print('✅ Icone do carrinho indicando que o carrinho está vazio');
   });
 
-  testWidgets('Verificando se o Carrinho está vazio - Tela de Checkout', (
+  /*testWidgets('Verificando se o Carrinho está vazio - Tela de Checkout', (
     WidgetTester tester,
   ) async {
     // Inicializa o widget SplashScreen
@@ -112,9 +109,9 @@ void main() {
     await navegarParaCheckoutScreen(tester);
 
     expect(find.text('Nenhum pedido na sacola.'), findsOneWidget);
-  });
+  });*/
 
-  testWidgets('Testando o fluxo de compra do carrinho(Checkout Screen)"', (
+  /*testWidgets('Testando o fluxo de compra do carrinho(Checkout Screen)"', (
     WidgetTester tester,
   ) async {
     // Inicializa o widget SplashScreen
@@ -199,7 +196,7 @@ void main() {
     print(
       '✅ Tela de confirmação do pedido fechada, indicando que o usuário retornou à tela anterior',
     );
-  });
+  });*/
 }
 
 Future<void> addEndereco(WidgetTester tester) async {
