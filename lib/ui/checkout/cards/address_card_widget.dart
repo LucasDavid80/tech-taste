@@ -36,7 +36,7 @@ Widget addressCard(double enderecoEntrega) {
           'Entrega',
           paymentProvider.selectedAddressDelivery ?? '',
           paymentProvider.selectedAddressDetails ?? '',
-          null,
+          '',
           () {
             enderecoEntrega = showPopUpWidget(
               context: context,
