@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techtaste/ui/checkout/checkout_screen.dart';
+import 'package:go_router/go_router.dart';
 
 Drawer getDrawer(BuildContext context) {
   return Drawer(
@@ -21,32 +21,27 @@ Drawer getDrawer(BuildContext context) {
           selectedColor: Color(0xFFFFA559),
           title: Text('Menu'),
           onTap: () {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         ListTile(
           title: Text('Sacola'),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return CheckoutScreen();
-                },
-              ),
+            context.push(
+              '/checkout', // Pass an empty list or the actual bag data
             );
           },
         ),
         ListTile(
           title: Text('Cupons'),
           onTap: () {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         ListTile(
           title: Text('Minha Conta'),
           onTap: () {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
       ],

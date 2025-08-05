@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
 import 'package:techtaste/ui/_core/providers/address_provider.dart';
 import 'package:techtaste/ui/checkout/cards/card_widget.dart';
@@ -47,7 +48,7 @@ List<Widget> buildPaymentOptions(BuildContext context) {
           listen: false,
         ).selectPaymentMethod('Cartão de Crédito', '**** **** **** 1234');
 
-        Navigator.of(context).pop();
+        context.pop();
       },
     ),
     getCardWidget(
@@ -60,7 +61,7 @@ List<Widget> buildPaymentOptions(BuildContext context) {
           context,
           listen: false,
         ).selectPaymentMethod('Cartão de Débito', '**** **** **** 5678');
-        Navigator.of(context).pop();
+        context.pop();
       },
     ),
   ];
@@ -87,7 +88,7 @@ List<Widget> buildAddressOptions(BuildContext context) {
                 listen: false,
               ).selectAddressDelivery('Casa', 'Rua A, 123 - Bairro');
               entrega = 7;
-              Navigator.of(context).pop();
+              context.pop();
             },
             icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
           ),
@@ -113,7 +114,7 @@ List<Widget> buildAddressOptions(BuildContext context) {
                 listen: false,
               ).selectAddressDelivery('Trabalho', 'Avenida Central, 456');
               entrega = 5;
-              Navigator.of(context).pop();
+              context.pop();
             },
             icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
           ),
@@ -139,7 +140,7 @@ List<Widget> buildCupomOptions(BuildContext context) {
           child: IconButton(
             onPressed: () {
               // Implementar a lógica para aplicar o cupom
-              Navigator.of(context).pop();
+              context.pop();
             },
             icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
           ),
@@ -160,7 +161,7 @@ List<Widget> buildCupomOptions(BuildContext context) {
           child: IconButton(
             onPressed: () {
               // Implementar a lógica para aplicar o cupom
-              Navigator.of(context).pop();
+              context.pop();
             },
             icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
           ),
@@ -181,7 +182,7 @@ List<Widget> buildCupomOptions(BuildContext context) {
           child: IconButton(
             onPressed: () {
               // Implementar a lógica para aplicar o cupom
-              Navigator.of(context).pop();
+              context.pop();
             },
             icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
           ),

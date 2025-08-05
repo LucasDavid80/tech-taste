@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:techtaste/model/restaurant.dart';
-import 'package:techtaste/ui/restaurant/restaurant_screen.dart';
 
 class RestaurantWidget extends StatelessWidget {
   final Restaurant restaurant;
@@ -10,12 +10,7 @@ class RestaurantWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => RestaurantScreen(restaurant: restaurant),
-          ),
-        );
+        context.push('/restaurant', extra: restaurant);
       },
       child: Row(
         spacing: 16.0,

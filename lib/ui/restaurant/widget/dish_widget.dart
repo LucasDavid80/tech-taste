@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:techtaste/model/dish.dart';
 import 'package:techtaste/model/restaurant.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
-import 'package:techtaste/ui/dish/dish_screen.dart';
 
 class DishWidget extends StatelessWidget {
   final Dish dish;
@@ -20,13 +20,7 @@ class DishWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder:
-                (context) => DishScreen(dish: dish, restaurant: restaurant),
-          ),
-        );
+        context.push('/dish', extra: {'dish': dish, 'restaurant': restaurant});
       },
       child: Card(
         child: Column(

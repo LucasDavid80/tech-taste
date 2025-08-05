@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
 import 'package:techtaste/ui/_core/providers/address_provider.dart';
 import 'package:techtaste/ui/_core/providers/bag_provider.dart';
@@ -49,7 +50,7 @@ void showOrderConfirmDialog({
         actionsAlignment: MainAxisAlignment.center,
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => context.pop(),
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: Colors.red,
@@ -67,7 +68,7 @@ void showOrderConfirmDialog({
               bagProvider.clearBag();
               addressProvider.clearSelectedAddress();
               paymentProvider.clearSelectedPayment();
-              Navigator.of(context).pop();
+              context.pop();
             },
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,

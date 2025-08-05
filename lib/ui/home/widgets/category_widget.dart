@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:techtaste/ui/_core/app_colors.dart';
-import 'package:techtaste/ui/categories/category_screen.dart';
 
 class CategoryWidget extends StatelessWidget {
   final String category;
@@ -10,17 +10,12 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigate to the category screen
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CategoryScreen(category: category),
-          ),
-        );
+        context.push('/category', extra: category);
       },
       child: Container(
-        width: 100,
-        height: 100,
+        alignment: Alignment.center,
+        width: 108,
+        height: 108,
         decoration: BoxDecoration(
           color: AppColors.lightBackgroundColor,
           borderRadius: BorderRadius.circular(16),
